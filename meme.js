@@ -120,6 +120,12 @@ window.Meme = function(image, canvas, top, bottom) {
 		// Should we split it into multiple lines?
 		if (context.measureText(text).width > (canvas.width * 1.1)) {
 
+			// If the string does not contain spaces, we will not draw it.
+			if (text.indexOf(' ') == -1) {
+				text = "...";
+				topOrBottom = 'none';
+			}
+
 			// Split word by word
 			var words = text.split(' ');
 			var wordsLength = words.length;
