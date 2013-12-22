@@ -109,6 +109,7 @@ window.Meme = function(image, canvas, top, bottom) {
 
 		// Variable setup
 		topOrBottom = topOrBottom || 'top';
+		var maxTextWidth = (canvas.width * 0.9);
 		var fontSize = (canvas.height / 8);
 		var x = canvas.width / 2;
 		if (typeof y === 'undefined') {
@@ -118,7 +119,7 @@ window.Meme = function(image, canvas, top, bottom) {
 		}
 
 		// Should we split it into multiple lines?
-		if (context.measureText(text).width > (canvas.width * 1.1)) {
+		if (context.measureText(text).width > maxTextWidth) {
 
 			// If the string does not contain spaces, we will not draw it.
 			if (text.indexOf(' ') == -1) {
@@ -138,7 +139,7 @@ window.Meme = function(image, canvas, top, bottom) {
 				var i = wordsLength;
 				while (i --) {
 					var justThis = words.slice(0, i).join(' ');
-					if (context.measureText(justThis).width < (canvas.width * 1.0)) {
+					if (context.measureText(justThis).width < maxTextWidth) {
 						drawText(justThis, topOrBottom, y);
 						drawText(words.slice(i, wordsLength).join(' '), topOrBottom, y + fontSize);
 						return;
@@ -148,7 +149,7 @@ window.Meme = function(image, canvas, top, bottom) {
 			else if (topOrBottom === 'bottom') {
 				for (var i = 0; i < wordsLength; i ++) {
 					var justThis = words.slice(i, wordsLength).join(' ');
-					if (context.measureText(justThis).width < (canvas.width * 1.0)) {
+					if (context.measureText(justThis).width < maxTextWidth) {
 						drawText(justThis, topOrBottom, y);
 						drawText(words.slice(0, i).join(' '), topOrBottom, y - fontSize);
 						return;
@@ -159,8 +160,8 @@ window.Meme = function(image, canvas, top, bottom) {
 		}
 
 		// Draw!
-		context.fillText(text, x, y, canvas.width * .9);
-		context.strokeText(text, x, y, canvas.width * .9);
+		context.fillText(text, x, y, maxTextWidth);
+		context.strokeText(text, x, y, maxTextWidth);
 
 	};
 
