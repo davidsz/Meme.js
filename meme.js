@@ -107,13 +107,26 @@ window.Meme = function(image, canvas, top, bottom) {
 
 	var drawText = function(text, topOrBottom, y) {
 
+		// Font settings
+		var maxFontSize = (canvas.height / 8);
+		var minFontSize = (canvas.height / 10);
+		var fontSize = maxFontSize;
+		var maxTextWidth = (canvas.width * 0.9);
+		for (var i = 0, diff = maxFontSize - minFontSize; i < diff; i++) {
+			var resizedFont = fontSize - i;
+			context.font = resizedFont + 'px Impact';
+			if (context.measureText(text).width <= maxTextWidth) {
+				fontSize = resizedFont;
+				break;
+			}
+		}
+
 		// Variable setup
 		topOrBottom = topOrBottom || 'top';
-		var maxTextWidth = (canvas.width * 0.9);
 		var fontSize = (canvas.height / 8);
 		var x = canvas.width / 2;
 		if (typeof y === 'undefined') {
-			y = fontSize;
+			y = maxFontSize;
 			if (topOrBottom === 'bottom')
 				y = canvas.height - 10;
 		}
@@ -181,8 +194,6 @@ window.Meme = function(image, canvas, top, bottom) {
 		context.fillStyle = 'white';
 		context.strokeStyle = 'black';
 		context.lineWidth = 2;
-		var fontSize = (canvas.height / 8);
-		context.font = fontSize + 'px Impact';
 		context.textAlign = 'center';
 
 		// Draw them!
