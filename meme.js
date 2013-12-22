@@ -107,6 +107,8 @@ window.Meme = function(image, canvas, top, bottom) {
 
 	var drawText = function(text, topOrBottom, y) {
 
+		text = text.toUpperCase();
+
 		// Font settings
 		var maxFontSize = (canvas.height / 8);
 		var minFontSize = (canvas.height / 10);
