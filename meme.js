@@ -125,7 +125,6 @@ window.Meme = function(image, canvas, top, bottom) {
 
 		// Variable setup
 		topOrBottom = topOrBottom || 'top';
-		var fontSize = (canvas.height / 8);
 		var x = canvas.width / 2;
 		if (typeof y === 'undefined') {
 			y = maxFontSize;
