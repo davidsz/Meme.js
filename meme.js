@@ -174,8 +174,8 @@ window.Meme = function(image, canvas, top, bottom) {
 		}
 
 		// Draw!
-		context.fillText(text, x, y, maxTextWidth);
-		context.strokeText(text, x, y, maxTextWidth);
+		context.fillText(text, x, y);
+		context.strokeText(text, x, y);
 
 	};
 
